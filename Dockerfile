@@ -1,6 +1,7 @@
+# syntax = docker/dockerfile:1.2
 FROM debian:bullseye-20220418-slim
 
-RUN apt-get update && apt-get install -y asterisk && rm -rf /var/lib/apt/lists/*
+RUN --mount=type=cache,target=/var/cache/apt apt-get update && apt-get install -y asterisk vim less iproute2
 
 RUN rm -rf /etc/asterisk/*
 RUN touch /etc/asterisk/pjproject.conf /etc/asterisk/ccss.conf /etc/asterisk/cel.conf /etc/asterisk/features.conf /etc/asterisk/acl.conf /etc/asterisk/cdr_custom.conf /etc/asterisk/pjsip_notify.conf /etc/asterisk/udptl.conf /etc/asterisk/stasis.conf /etc/asterisk/pjsip.conf
